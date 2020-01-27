@@ -26,7 +26,7 @@ namespace asp_mvc_database_assignment.Models.Services
                 Title = assignment.Title,
                 Description = assignment.Description
             };
-            return _assignmentRepo.Create(new_Assignment);
+            return _assignmentRepo.Create(new_Assignment); 
         }
 
         public bool Delete(int id)

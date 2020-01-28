@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace asp_mvc_database_assignment.Models.Services
 {
-    interface IAssignmentService
+    public interface IAssignmentService
     {
-        Course Create(AssignmentViewModel assignment);
-        Course Read(int id);
-        Course Update(Course assignment);
-        bool Delete(int id);
-
-        List<Course> All();
+        Assignment Create(AssignmentViewModel assignment);
+        Assignment Find(int id);
+        Assignment Update(Assignment assignment);
+        bool Remove(int id);
+        List<Assignment> All();
     }
 }

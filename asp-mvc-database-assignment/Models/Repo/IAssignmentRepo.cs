@@ -7,11 +7,10 @@ namespace asp_mvc_database_assignment.Models.Repo
 {
     public interface IAssignmentRepo
     {
-        Course Create(Course assignment);
-        Course Read(int id);
-        Course Update(Course assignment);
-        bool Delete(Course assignment);
-
-        List<Course> All { get; }
+        Assignment Create(Assignment assignment);
+        Assignment Find(int id);
+        Assignment Update(Assignment assignment);
+        bool Remove(Assignment assignment);
+        List<Assignment> All();
     }
 }

@@ -14,34 +14,43 @@ namespace asp_mvc_database_assignment.Models.Services
         {
             _assignmentRepo = assignmentRepo;
         }
-        public List<Course> All()
+
+        public List<Assignment> All()
         {
-            return _assignmentRepo.All;
+            return _assignmentRepo.All();
         }
 
-        public Course Create(AssignmentViewModel assignment)
+        public Assignment Create(AssignmentViewModel assignment)
         {
-            Course new_Assignment = new Course()
+            Assignment new_Assignment = new Assignment()
             {
                 Title = assignment.Title,
                 Description = assignment.Description
             };
+
             return _assignmentRepo.Create(new_Assignment); 
         }
 
-        public bool Delete(int id)
+        public bool Remove(int id)
         {
-            
+            Assignment assignment = Find(id);
+
+            if (assignment == null)
+            {
+                return false;
+            }
+
+            return _assignmentRepo.Remove(assignment);
         }
 
-        public Course Read(int id)
+        public Assignment Find(int id)
         {
-           
+            return _assignmentRepo.Find(id);
         }
 
-        public Course Update(Course assignment)
+        public Assignment Update(Assignment assignment)
         {
-            
+            return _assignmentRepo.Update(assignment);  
         }
     }
 }

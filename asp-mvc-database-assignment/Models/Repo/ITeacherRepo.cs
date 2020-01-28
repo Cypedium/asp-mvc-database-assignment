@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace asp_mvc_database_assignment.Models.Repo
 {
-    interface ITeacherRepo
+    public interface ITeacherRepo
     {
         Teacher Create(Teacher teacher);
-        Teacher Read(int id);
+        Teacher Find(int id);
         Teacher Update(Teacher teacher);
-        bool Delete(Teacher teacher);
-
+        bool Remove(Teacher teacher);
         List<Teacher> All();
     }
 }

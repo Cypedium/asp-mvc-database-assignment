@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace asp_mvc_database_assignment.Models
 {
-    public class Course
+    public class Assignment
     {
         [Key]
         public int Id { get; set; }

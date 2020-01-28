@@ -13,7 +13,7 @@ namespace asp_mvc_database_assignment
         { }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<Course> Assignments { get; set; }
+        public DbSet<Assignment> Courses { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
     }
 }

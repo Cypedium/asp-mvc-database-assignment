@@ -13,39 +13,45 @@ namespace asp_mvc_database_assignment.Models.Repo
         {
             _handleStudentsDbContext = handleStudentsDbContext;
         }
-        public List<Course> All => _handleStudentsDbContext.Assignments.ToList();
 
-        public Course Create(Course assignment)
+        public Assignment Create(Assignment assignment)
         {
             _handleStudentsDbContext.Assignments.Add(assignment);
+
             _handleStudentsDbContext.SaveChanges();
+
             return assignment;
         }
 
-        public bool Delete(Course assignment)
+        public Assignment Find(int id)
+        {
+            return _handleStudentsDbContext.Assignments.SingleOrDefault(assignment => assignment.Id == id);
+        }
+        public List<Assignment> All()
+        {
+            return _handleStudentsDbContext.Assignments.ToList();
+        }
+
+        public bool Remove(Assignment assignment)
         {
             var result = _handleStudentsDbContext.Assignments.Remove(assignment);
 
             _handleStudentsDbContext.SaveChanges();
-            return true;
-             
+
+            return true;      
         }
 
-        public Course Read(int id)
+       
+        public Assignment Update(Assignment assignment)
         {
-            return _handleStudentsDbContext.Assignments.SingleOrDefault(assignment => assignment.Id == id); 
-        }
+            Assignment newAssignment = Find(assignment.Id);
 
-        public Course Update(Course assignment)
-        {
-            Course database = Read(assignment.Id);
-
-            database.Title = assignment.Title;
-            database.Description = assignment.Description;
+            newAssignment.Title = assignment.Title;
+            newAssignment.Description = assignment.Description;
 
             _handleStudentsDbContext.SaveChanges();
 
-            return database;
+            return newAssignment;
         }
     }
 }

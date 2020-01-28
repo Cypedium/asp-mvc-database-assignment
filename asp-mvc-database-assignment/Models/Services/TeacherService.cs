@@ -18,7 +18,7 @@ namespace asp_mvc_database_assignment.Models.Services
             
         }
 
-        public bool Delete(int id)
+        public bool Remove(int id)
         {
             
         }

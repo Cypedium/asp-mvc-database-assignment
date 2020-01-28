@@ -16,5 +16,7 @@ namespace asp_mvc_database_assignment.Models
         [Required]
         [StringLength(256, MinimumLength = 10)]
         public string Description { get; set; }
+
+        public List<Student_Course_Map> Student_Course_Maps { get; set; } //init for database
     }
 }

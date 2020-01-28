@@ -14,35 +14,35 @@ namespace asp_mvc_database_assignment.Models.Repo
         }
         public List<Course> All()
         {
-            return _handleStudentsDbContext.Assignments.ToList();
+            return _handleStudentsDbContext.Courses.ToList();
         }
 
-        public Assignment Create(Assignment course)
+        public Course Create(Course course)
         {
-            _handleStudentsDbContext.Assignments.Add(course);
+            _handleStudentsDbContext.Courses.Add(course);
                         
             _handleStudentsDbContext.SaveChanges();
             
             return course;
         }
 
-        public bool Remove(Assignment course)
+        public bool Remove(Course course)
         {
-            var result = _handleStudentsDbContext.Assignments.Remove(course);
+            var result = _handleStudentsDbContext.Courses.Remove(course);
           
             _handleStudentsDbContext.SaveChanges();
             
             return true;
         }
 
-        public Assignment Find(int id)
+        public Course Find(int id)
         {
-            return _handleStudentsDbContext.Assignments.SingleOrDefault(course => course.Id == id);
+            return _handleStudentsDbContext.Courses.SingleOrDefault(course => course.Id == id);
         }
 
-        public Assignment Update(Assignment course)
+        public Course Update(Course course)
         {
-            Assignment newCourse = Find(course.Id);
+            Course newCourse = Find(course.Id);
 
             newCourse.Title = course.Title;
             newCourse.Description = course.Description;

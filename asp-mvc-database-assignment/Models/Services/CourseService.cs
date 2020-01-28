@@ -32,19 +32,26 @@ namespace asp_mvc_database_assignment.Models.Services
             return _courseRepo.Create(new_Course);
         }
 
-        public Course Read(int id)
+        public Course Find(int id)
         {
-            
+            return _courseRepo.Find(id);
         }
 
         public bool Remove(int id)
         {
-            
+            Course course = Find(id);
+
+            if (course == null)
+            {
+                return false;
+            }
+
+            return _courseRepo.Remove(course);
         }
 
         public Course Update(Course course)
         {
-            
+            return _courseRepo.Update(course);
         }
     }
 }

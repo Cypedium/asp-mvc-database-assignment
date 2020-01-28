@@ -9,7 +9,7 @@ namespace asp_mvc_database_assignment.Models.Services
     public interface ITeacherService
     {
         Teacher Create(TeacherViewModel course);
-        Teacher Read(int id);
+        Teacher Find(int id);
         Teacher Update(Teacher teacher);
         bool Remove(int id);
         List<Teacher> All();

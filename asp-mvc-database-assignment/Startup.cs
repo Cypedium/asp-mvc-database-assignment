@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using asp_mvc_database_assignment.Models;
+using asp_mvc_database_assignment.Models.Repo;
+using asp_mvc_database_assignment.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,10 +29,20 @@ namespace asp_mvc_database_assignment
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IStudentService, StudentService>();
             services.AddDbContext<HandleStudentsDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+
+            services.AddScoped<IStudentRepo, StudentRepo>();
+            services.AddScoped<IAssignmentRepo, AssignmentRepo>();
+            services.AddScoped<ICourseRepo, CourseRepo>();
+            services.AddScoped<ITeacherRepo, TeacherRepo>();
+
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IAssignmentService, AssignmentService>();
+            services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<ITeacherService, TeacherService>();
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

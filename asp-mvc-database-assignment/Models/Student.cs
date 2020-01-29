@@ -23,6 +23,8 @@ namespace asp_mvc_database_assignment.Models
         [StringLength(63, MinimumLength = 6)]
         public string E_mail { get; set; }
 
-        public List<Student_Course_Map> Student_Course_Maps { get; set; } //init for database
+        public List<Student_Course_Map> Student_Course_Maps { get; set; } //init for database many to many Course to Student
+
+        public List<Grade> Grades { get; set; } //init for database one to many Student to Grade
     }
 }

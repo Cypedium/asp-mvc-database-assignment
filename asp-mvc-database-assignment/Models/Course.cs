@@ -10,13 +10,17 @@ namespace asp_mvc_database_assignment.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         [StringLength(63, MinimumLength = 1)]
         public string Title { get; set; }
+
         [Required]
         [StringLength(256, MinimumLength = 10)]
         public string Description { get; set; }
 
         public List<Student_Course_Map> Student_Course_Maps { get; set; } //init for database
+
+        public List<Grade> Assignmnet_Course_Maps { get; set; }
     }
 }

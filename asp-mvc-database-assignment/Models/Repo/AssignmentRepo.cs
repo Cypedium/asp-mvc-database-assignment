@@ -35,6 +35,21 @@ namespace asp_mvc_database_assignment.Models.Repo
         public bool Remove(Assignment assignment)
         {
             var result = _handleStudentsDbContext.Assignments.Remove(assignment);
+            //switch (result.State)
+            //{
+            //    case Microsoft.EntityFrameworkCore.EntityState.Detached:
+            //        break;
+            //    case Microsoft.EntityFrameworkCore.EntityState.Unchanged:
+            //        break;
+            //    case Microsoft.EntityFrameworkCore.EntityState.Deleted:
+            //        break;
+            //    case Microsoft.EntityFrameworkCore.EntityState.Modified:
+            //        break;
+            //    case Microsoft.EntityFrameworkCore.EntityState.Added:
+            //        break;
+            //    default:
+            //        break;
+            //}
 
             _handleStudentsDbContext.SaveChanges();
 

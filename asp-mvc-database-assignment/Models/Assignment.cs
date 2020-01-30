@@ -16,9 +16,9 @@ namespace asp_mvc_database_assignment.Models
         public string Title { get; set; }
 
         [Required]
-        [StringLength(256, MinimumLength = 10)]
+        [StringLength(254, MinimumLength = 10)]
         public string Description { get; set; }
 
-        public List<Grade> Assignmnet_Course_Maps { get; set; }
+        public List<Grade> Grades { get; set; }
     }
 }

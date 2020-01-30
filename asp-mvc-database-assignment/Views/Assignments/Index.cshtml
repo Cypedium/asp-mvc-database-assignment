@@ -1,0 +1,22 @@
+﻿@model List<Assignment>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Create Index</h1>
+<hr />
+<br />
+<a asp-action="Create">Create Cake</a>
+
+<table>
+
+    @foreach (var item in Model)
+    {
+    <tr id="@("AssignmentId" + item.Id)">
+        <td>@item.Title</td>
+        <td>@item.Description</td>
+        <td>@item.Grades</td>
+    </tr>
+    }
+
+</table>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using asp_mvc_database_assignment.Models;
 
 namespace asp_mvc_database_assignment.Migrations
 {
     [DbContext(typeof(HandleStudentsDbContext))]
-    partial class HandleStudentsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200130081409_Added_Class_Grade")]
+    partial class Added_Class_Grade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,8 +30,8 @@ namespace asp_mvc_database_assignment.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(254)")
-                        .HasMaxLength(254);
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -53,22 +55,12 @@ namespace asp_mvc_database_assignment.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeacherId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(63)")
                         .HasMaxLength(63);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TeacherId");
-
-                    b.HasIndex("TeacherId1");
 
                     b.ToTable("Courses");
                 });
@@ -176,31 +168,16 @@ namespace asp_mvc_database_assignment.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("asp_mvc_database_assignment.Models.Course", b =>
-                {
-                    b.HasOne("asp_mvc_database_assignment.Models.Teacher", null)
-                        .WithMany("Courses")
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("asp_mvc_database_assignment.Models.Teacher", "Teacher")
-                        .WithMany()
-                        .HasForeignKey("TeacherId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("asp_mvc_database_assignment.Models.Grade", b =>
                 {
                     b.HasOne("asp_mvc_database_assignment.Models.Assignment", "Assignment")
-                        .WithMany("Grades")
+                        .WithMany("Assignmnet_Course_Maps")
                         .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("asp_mvc_database_assignment.Models.Course", "Course")
-                        .WithMany("Grades")
+                        .WithMany("Assignmnet_Course_Maps")
                         .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

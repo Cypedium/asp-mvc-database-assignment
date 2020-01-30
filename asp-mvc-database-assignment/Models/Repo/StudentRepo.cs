@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace asp_mvc_database_assignment.Models.Repo
+namespace asp_mvc_database_assignment.Models
 {
     public class StudentRepo : IStudentRepo
     {

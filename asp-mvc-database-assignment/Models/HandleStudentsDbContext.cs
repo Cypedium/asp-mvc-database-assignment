@@ -15,6 +15,7 @@ namespace asp_mvc_database_assignment.Models
         public DbSet<Course> Courses { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<Grade> Grades { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,20 +41,26 @@ namespace asp_mvc_database_assignment.Models
 
             modelBuilder.Entity<Grade>()
                 .HasOne(ac => ac.Assignment)
-                .WithMany(a => a.Assignmnet_Course_Maps)
+                .WithMany(a => a.Grades)
                 .HasForeignKey(ac => ac.Id);
 
             modelBuilder.Entity<Grade>()
                 .HasOne(grade => grade.Course)
-                .WithMany(c => c.Assignmnet_Course_Maps)
+                .WithMany(c => c.Grades)
                 .HasForeignKey(grade => grade.Id);
             //********************************************************************************
 
             //***Init for Student and Grade one to many***************************************
             modelBuilder.Entity<Student>()
-                .HasOne<Grade>()
-                .WithMany()
-                .HasForeignKey(student => student.Id); 
+                .HasMany(s => s.Grades)
+                .WithOne();
+            //********************************************************************************
+
+            //***Init for Teacher and Courses one to many*************************************
+            modelBuilder.Entity<Teacher>()
+                .HasMany(t => t.Courses)
+                .WithOne();
+            //********************************************************************************
         }
     }
 }

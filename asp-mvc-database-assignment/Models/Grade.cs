@@ -29,11 +29,11 @@ namespace asp_mvc_database_assignment.Models
         //---------------------------------------
 
         //--One to Many--------------------------
-        [Required]
-        public int StudentId {get; set;}
+        //[Required]
+        //public int StudentId {get; set;}
 
-        [Required]
-        public Student Student { get; set; }
+        //[Required]
+        //public Student Student { get; set; }
         //---------------------------------------
     }
 }

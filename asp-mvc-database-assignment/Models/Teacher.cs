@@ -24,5 +24,7 @@ namespace asp_mvc_database_assignment.Models
 
         [StringLength(63, MinimumLength =2)]
         public string Title { get; set; }
+        [Required]
+        public List<Course> Courses { get; set; }
     }
 }

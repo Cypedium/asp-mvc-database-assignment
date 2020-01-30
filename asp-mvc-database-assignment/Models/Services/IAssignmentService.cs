@@ -1,10 +1,9 @@
-﻿using asp_mvc_database_assignment.Models.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace asp_mvc_database_assignment.Models.Services
+namespace asp_mvc_database_assignment.Models
 {
     public interface IAssignmentService
     {

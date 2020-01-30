@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace asp_mvc_database_assignment.Models.ViewModels
+namespace asp_mvc_database_assignment.Models
 {
     public class AssignmentViewModel
     {

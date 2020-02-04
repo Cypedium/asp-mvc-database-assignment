@@ -20,11 +20,9 @@ namespace asp_mvc_database_assignment.Models
 
         [Required]
         public int CourseId { get; set; }
-
-        [Required]
+  
         public Assignment Assignment { get; set; }
 
-        [Required]
         public Course Course { get; set; }
         //---------------------------------------
 

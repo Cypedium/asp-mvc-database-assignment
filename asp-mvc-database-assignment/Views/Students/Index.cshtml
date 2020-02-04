@@ -1,7 +1,25 @@
-﻿
+﻿@model List<Student>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Create Index</h1>
+<hr />
+<br />
+
+<a asp-action="Create">Create Student</a>
+
+<table>
+
+    @foreach (var item in Model)
+    {
+        <tr id="@("StudentId" + item.Id)">
+            <td>@item.F_Name</td>
+            <td>@item.L_Name</td>
+            <td>@item.E_mail</td>
+            <td>@item.Grades</td>
+        </tr>
+    }
+
+</table>
 

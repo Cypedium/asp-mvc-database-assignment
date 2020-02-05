@@ -9,6 +9,7 @@ namespace asp_mvc_database_assignment.Controllers
 {
     public class StudentsController : Controller
     {
+        //---Init and Index-----------------------------------------------------------
         IStudentService _studentService;
         public StudentsController(IStudentService studentService)
         {
@@ -18,8 +19,9 @@ namespace asp_mvc_database_assignment.Controllers
         {
             return View(_studentService.All());
         }
-        //---Init and Index-----------------------------------------------------------
+        //-----------------------------------------------------------------------------
 
+        //Create-----------------------------------------------------------------------
         [HttpGet]
         public IActionResult Create()
         {
@@ -31,6 +33,53 @@ namespace asp_mvc_database_assignment.Controllers
             if (ModelState.IsValid)
             {
                 _studentService.Create(student);
+                return RedirectToAction("Index");
+            }
+            return View(student);
+        }
+        //-----------------------------------------------------------------------------
+
+        //-----------------------------------------------------------------------------
+        [HttpGet]
+        public IActionResult Remove()
+        {            
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Remove(Student student)
+        {
+            bool result = _studentService.Remove(student.Id);
+
+            if (result)
+            {
+                ViewBag.msg = "Your Student has been succesfully removed";
+            }
+            else
+            {
+                ViewBag.msg = "Unable to remove Student";
+            }
+
+            return View(_studentService.All());
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Student student = _studentService.Find(id);
+            if (student == null)
+            {
+                ViewBag.msg = "The Student was not found";
+                return View(_studentService.All());
+            }
+            return View(student);
+        }
+        [HttpPost]
+        public IActionResult Edit(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                _studentService.Update(student);
                 return RedirectToAction("Index");
             }
             return View(student);

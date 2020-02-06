@@ -18,11 +18,12 @@ namespace asp_mvc_database_assignment.Models
         [Required]
         [StringLength(256, MinimumLength = 10)]
         public string Description { get; set; }
-        [Required]
+        
         public List<Student_Course_Map> Student_Course_Maps { get; set; } //init for database
-        [Required]
-        public List<Grade> Grades { get; set; }
-        [Required]
+        
+        public List<Grade> Grades { get; set; } //many to many joinclass Grade between Course and Assignment
+        
         public Teacher Teacher { get; set; }
+        public int TeacherId { get; set; }
     }
 }

@@ -22,9 +22,11 @@ namespace asp_mvc_database_assignment.Models
         [StringLength(63, MinimumLength = 6)]
         public string E_mail { get; set; }
 
+        [Required]
         [StringLength(63, MinimumLength =2)]
         public string Title { get; set; }
-        [Required]
+
+        //--One to Many--Teacher to Course-----------------
         public List<Course> Courses { get; set; }
     }
 }

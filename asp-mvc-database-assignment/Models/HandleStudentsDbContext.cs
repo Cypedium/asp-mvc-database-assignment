@@ -56,7 +56,7 @@ namespace asp_mvc_database_assignment.Models
 
             //***Init for Teacher and Courses one to many*************************************
             modelBuilder.Entity<Teacher>()
-                .HasMany(t => t.Courses)
+                .HasMany(t => t.Student_Course_Maps)
                 .WithOne(c => c.Teacher)
                 .HasForeignKey(t => t.TeacherId);
                 

@@ -17,7 +17,7 @@ namespace asp_mvc_database_assignment
     {
         public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration) //Accces database
         {
             Configuration = configuration;
         }
@@ -29,6 +29,8 @@ namespace asp_mvc_database_assignment
             services.AddDbContext<HandleStudentsDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            //sevices.AddDefaultIdentity<IdentityOptions>(OptionsBuilderConfigurationExtensions => Options.SignIn.RequireConfirmed)
 
             //services.AddSingleton<ICarRepository, MockCarRepository>();// very alike a static
             services.AddScoped<IStudentRepo, StudentRepo>();
@@ -60,6 +62,9 @@ namespace asp_mvc_database_assignment
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            //Behöver körkort
+            //för att köra bilen och kunna kolla om de har ett körkort
 
             app.UseAuthorization();
 

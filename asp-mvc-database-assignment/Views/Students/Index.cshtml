@@ -8,21 +8,25 @@
 <br />
 
 <a asp-action="Create">Create Student</a>
-<a asp-action="Edit">Edit Student</a>
-<a asp-action="Remove">Remove Student</a>
+
+
 
 <hr />
+<br />
+@ViewBag.msg
 <br />
 <table>
 
     @foreach (var item in Model)
     {
-        <tr id="@("StudentId" + item.Id)">
-            <td>@item.F_Name</td>
-            <td>@item.L_Name</td>
-            <td>@item.E_mail</td>
-            <td>@item.Grades</td>
-        </tr>
+    <tr id="@("StudentId" + item.Id)">
+        <td>@item.F_Name</td>
+        <td>@item.L_Name</td>
+        <td>@item.E_mail</td>
+        <td>@item.Grades</td>
+        <td><a asp-route-id="@item.Id" asp-action="Remove">Remove</a></td>
+        <td><a asp-route-id="@item.Id" asp-action="Edit">Rename</a></td>
+    </tr>
     }
 
 </table>

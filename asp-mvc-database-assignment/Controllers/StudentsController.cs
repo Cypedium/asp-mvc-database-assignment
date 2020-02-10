@@ -41,9 +41,14 @@ namespace asp_mvc_database_assignment.Controllers
 
         //-----------------------------------------------------------------------------
         [HttpGet]
-        public IActionResult Remove()
-        {            
-            return View();
+        public IActionResult Remove(int id)
+        {
+            Student aStudent = _studentService.Find(id);
+            if (aStudent==null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(aStudent);
         }
 
         [HttpPost]
@@ -60,7 +65,7 @@ namespace asp_mvc_database_assignment.Controllers
                 ViewBag.msg = "Unable to remove Student";
             }
 
-            return View(_studentService.All());
+            return View( "Index",_studentService.All());
         }
 
         [HttpGet]

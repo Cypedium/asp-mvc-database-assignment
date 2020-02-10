@@ -26,7 +26,7 @@ namespace asp_mvc_database_assignment.Models
         [StringLength(63, MinimumLength =2)]
         public string Title { get; set; }
 
-        //--One to Many--Teacher to Course-----------------
-        public List<Course> Courses { get; set; }
+        //--One to Many--Teacher to Course and Students-----------------
+        public List<Student_Course_Map> Student_Course_Maps { get; set; }
     }
 }

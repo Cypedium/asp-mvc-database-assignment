@@ -7,7 +7,7 @@
 <hr />
 <br />
 
-<a asp-action="Create">Create Student</a>
+<h3 asp-action="Create">Create Student</h3>
 
 
 
@@ -15,7 +15,7 @@
 <br />
 @ViewBag.msg
 <br />
-<table>
+<table class="table table-striped">
 
     @foreach (var item in Model)
     {
@@ -24,8 +24,8 @@
         <td>@item.L_Name</td>
         <td>@item.E_mail</td>
         <td>@item.Grades</td>
-        <td><a asp-route-id="@item.Id" asp-action="Remove">Remove</a></td>
-        <td><a asp-route-id="@item.Id" asp-action="Edit">Rename</a></td>
+        <td><button asp-route-id="@item.Id" asp-action="Remove" type="button" class="btn btn-danger">Remove</button></td>
+        <td><button asp-route-id="@item.Id" asp-action="Edit" type="button" class="btn btn-warning">Rename</button></td>
     </tr>
     }
 

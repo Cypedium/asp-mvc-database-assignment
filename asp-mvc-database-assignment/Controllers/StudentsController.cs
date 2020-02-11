@@ -41,6 +41,22 @@ namespace asp_mvc_database_assignment.Controllers
 
         //-----------------------------------------------------------------------------
         [HttpGet]
+        public IActionResult Details(int id)
+        {
+            Student studentDetails = _studentService.Find(id);
+            if (studentDetails==null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(studentDetails);
+        }
+        [HttpPost]
+        public IActionResult Details() //uses this postaction for back to option
+        {
+            return View("Index", _studentService.All());
+        }
+
+        [HttpGet]
         public IActionResult Remove(int id)
         {
             Student aStudent = _studentService.Find(id);

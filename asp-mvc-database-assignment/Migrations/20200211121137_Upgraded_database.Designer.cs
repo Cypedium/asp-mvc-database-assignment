@@ -10,8 +10,8 @@ using asp_mvc_database_assignment.Models;
 namespace asp_mvc_database_assignment.Migrations
 {
     [DbContext(typeof(HandleStudentsDbContext))]
-    [Migration("20200204113252_Working")]
-    partial class Working
+    [Migration("20200211121137_Upgraded_database")]
+    partial class Upgraded_database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,10 +55,7 @@ namespace asp_mvc_database_assignment.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeacherId1")
+                    b.Property<int?>("TeacherId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -70,20 +67,20 @@ namespace asp_mvc_database_assignment.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.HasIndex("TeacherId1");
-
                     b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("asp_mvc_database_assignment.Models.Grade", b =>
                 {
-                    b.Property<int>("AssignmnetId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AssignmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<string>("MyGrade")
@@ -93,13 +90,15 @@ namespace asp_mvc_database_assignment.Migrations
                     b.Property<int?>("StudentId")
                         .HasColumnType("int");
 
-                    b.HasKey("AssignmnetId", "CourseId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("AssignmentId");
+
+                    b.HasIndex("CourseId");
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Grades");
+                    b.ToTable("Grade");
                 });
 
             modelBuilder.Entity("asp_mvc_database_assignment.Models.Student", b =>
@@ -142,7 +141,7 @@ namespace asp_mvc_database_assignment.Migrations
 
                     b.HasKey("StudentId", "CourseId");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("CourseId");
 
                     b.ToTable("Student_Course_Map");
                 });
@@ -170,6 +169,7 @@ namespace asp_mvc_database_assignment.Migrations
                         .HasMaxLength(31);
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(63)")
                         .HasMaxLength(63);
 
@@ -180,32 +180,20 @@ namespace asp_mvc_database_assignment.Migrations
 
             modelBuilder.Entity("asp_mvc_database_assignment.Models.Course", b =>
                 {
-                    b.HasOne("asp_mvc_database_assignment.Models.Teacher", null)
-                        .WithMany("Courses")
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("asp_mvc_database_assignment.Models.Teacher", "Teacher")
-                        .WithMany()
-                        .HasForeignKey("TeacherId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Courses")
+                        .HasForeignKey("TeacherId");
                 });
 
             modelBuilder.Entity("asp_mvc_database_assignment.Models.Grade", b =>
                 {
                     b.HasOne("asp_mvc_database_assignment.Models.Assignment", "Assignment")
                         .WithMany("Grades")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AssignmentId");
 
                     b.HasOne("asp_mvc_database_assignment.Models.Course", "Course")
                         .WithMany("Grades")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CourseId");
 
                     b.HasOne("asp_mvc_database_assignment.Models.Student", null)
                         .WithMany("Grades")
@@ -216,13 +204,13 @@ namespace asp_mvc_database_assignment.Migrations
                 {
                     b.HasOne("asp_mvc_database_assignment.Models.Course", "Course")
                         .WithMany("Student_Course_Maps")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("asp_mvc_database_assignment.Models.Student", "Student")
                         .WithMany("Student_Course_Maps")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

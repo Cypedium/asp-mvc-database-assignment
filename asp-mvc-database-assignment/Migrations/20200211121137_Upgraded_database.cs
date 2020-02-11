@@ -2,7 +2,7 @@
 
 namespace asp_mvc_database_assignment.Migrations
 {
-    public partial class test : Migration
+    public partial class Upgraded_database : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,7 +59,7 @@ namespace asp_mvc_database_assignment.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(maxLength: 63, nullable: false),
                     Description = table.Column<string>(maxLength: 256, nullable: false),
-                    TeacherId = table.Column<int>(nullable: false)
+                    TeacherId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -69,40 +69,41 @@ namespace asp_mvc_database_assignment.Migrations
                         column: x => x.TeacherId,
                         principalTable: "Teachers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Grades",
+                name: "Grade",
                 columns: table => new
                 {
-                    AssignmentId = table.Column<int>(nullable: false),
-                    CourseId = table.Column<int>(nullable: false),
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     MyGrade = table.Column<string>(nullable: false),
-                    StudentId = table.Column<int>(nullable: false)
+                    AssignmentId = table.Column<int>(nullable: true),
+                    CourseId = table.Column<int>(nullable: true),
+                    StudentId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Grades", x => new { x.AssignmentId, x.CourseId });
+                    table.PrimaryKey("PK_Grade", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Grades_Assignments_AssignmentId",
+                        name: "FK_Grade_Assignments_AssignmentId",
                         column: x => x.AssignmentId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Grades_Courses_CourseId",
+                        name: "FK_Grade_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Grades_Students_StudentId",
+                        name: "FK_Grade_Students_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Students",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -136,13 +137,18 @@ namespace asp_mvc_database_assignment.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Grades_CourseId",
-                table: "Grades",
+                name: "IX_Grade_AssignmentId",
+                table: "Grade",
+                column: "AssignmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Grade_CourseId",
+                table: "Grade",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Grades_StudentId",
-                table: "Grades",
+                name: "IX_Grade_StudentId",
+                table: "Grade",
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
@@ -154,7 +160,7 @@ namespace asp_mvc_database_assignment.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Grades");
+                name: "Grade");
 
             migrationBuilder.DropTable(
                 name: "Student_Course_Map");

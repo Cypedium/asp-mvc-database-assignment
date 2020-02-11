@@ -1,0 +1,31 @@
+﻿@model Assignment
+@{
+    ViewData["Title"] = "Remove";
+}
+
+<h1>Remove</h1>
+
+<h1>Remove Assignment</h1>
+
+
+<hr />
+<br />
+
+<form asp-action="Remove" method="post" class="btn btn-info">
+    <input asp-for="Id" value="@Model.Id" type="hidden" />
+    <font style="align-content: stretch">
+
+        <label asp-for="Title"></label>
+        <input asp-for="Title" disabled />
+        <br />
+
+        <label asp-for="Description"></label>
+        <input asp-for="Description" disabled />
+        <br />
+
+        <hr />
+        <input type="submit" value="Remove Assignment?" />
+        <br />
+        <input type="submit" value="Back to Create Assignment" asp-action="Details" />
+    </font>
+</form>

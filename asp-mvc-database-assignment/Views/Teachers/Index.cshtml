@@ -1,7 +1,33 @@
-﻿
+﻿@model  List<Teacher>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Create Index</h1>
+<hr />
+<br />
 
+<a asp-action="Create" type="button" class="btn btn-success">Create Teacher</a>
+
+
+
+<hr />
+<br />
+@ViewBag.msg
+<br />
+<table class="table table-striped">
+
+    @foreach (var item in Model)
+    {
+        <tr id="@("TeacherId" + item.Id)">
+            <td>@item.F_Name.</td>
+            <td>@item.L_Name</td>
+            <td>@item.E_mail</td>
+            <td>@item.Courses</td>
+            <td><a asp-route-id="@item.Id" asp-action="Details" type="button" class="btn btn-info">Details</a></td>
+            <td><a asp-route-id="@item.Id" asp-action="Remove" type="button" class="btn btn-danger">Remove</a></td>
+            <td><a asp-route-id="@item.Id" asp-action="Edit" type="button" class="btn btn-warning">Rename</a></td>
+        </tr>
+    }
+
+</table>

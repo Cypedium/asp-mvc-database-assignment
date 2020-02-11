@@ -10,19 +10,11 @@ namespace asp_mvc_database_assignment.Models
     {
         [Key]
         public int Id { get; set; } //need this to be certan that the database could delete a row
-        
         [Required]
         public int StudentId { get; set; }
-
         [Required]
         public int CourseId { get; set; }
-
-        [Required]
-        public int TeacherId { get; set; }
-
         public Student Student { get; set; } //uses to access list in Student class
-        public Course Course { get; set; } //uses to access list in Course class
-        public Teacher Teacher { get; set; }
-        
+        public Course Course { get; set; } //uses to access list in Course class    
     }
 }

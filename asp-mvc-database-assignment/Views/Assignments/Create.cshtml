@@ -4,10 +4,14 @@
 }
 
 <h1>Create Assignment</h1>
+<hr />
+<br />
 
-<form asp-action="Create" asp-controller="Assignments"  method="post">
+<form asp-action="Create" method="post" class="btn btn-success">
 
     <div asp-validation-summary="All"></div>
+
+
 
     <label asp-for="Title"></label>
     <input asp-for="Title" />
@@ -20,7 +24,9 @@
     <span asp-validation-for="Description"></span>
 
     <br />
-
+    <hr />
     <input type="submit" value="Add Assignment" />
+    <br />
+    <input type="submit" value="Back to Create Assignment" asp-action="Details" />
 
 </form>

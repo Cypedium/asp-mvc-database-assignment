@@ -1,0 +1,36 @@
+﻿@model Course
+@{
+    ViewData["Title"] = "Remove";
+}
+
+<h1>Remove Course</h1>
+
+
+<hr />
+<br />
+
+<form asp-action="Remove" asp-controller="Courses" method="post" class="btn btn-info">
+    <input asp-for="Id" value="@Model.Id" type="hidden" />
+    <font style="align-content: stretch">
+
+        <label asp-for="Title"></label>
+        <input asp-for="Title" disabled />
+
+        <br />
+
+        <label asp-for="Description"></label>
+        <input asp-for="Description" disabled />
+
+        <br />
+
+        <label asp-for="Teacher"></label>
+        <input asp-for="Teacher" disabled />
+
+        <br />
+        <hr />
+        <input type="submit" value="Remove Course?" />
+        <br />
+        <input type="submit" value="Back to Create Course" asp-action="Details" />
+    </font>
+</form>
+

@@ -1,0 +1,31 @@
+﻿@model Assignment
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Rename Assignment</h1>
+
+<hr />
+<br />
+
+<form asp-action="Edit" method="post" class="btn btn-info">
+    <font style="align-content: stretch">
+
+        <div asp-validation-summary="All"></div>
+
+        <label asp-for="Title"></label>
+        <input asp-for="Title" /><span asp-validation-for="Title"></span>
+
+        <br />
+
+        <label asp-for="Description"></label>
+        <input asp-for="Description" /><span asp-validation-for="Description"></span>
+        
+        <br />
+        <hr />
+
+        <input type="submit" value="Rename Assignment" />
+        <br />
+        <input type="submit" value="Back to Create Assignment" asp-action="Details" />
+    </font>
+</form>

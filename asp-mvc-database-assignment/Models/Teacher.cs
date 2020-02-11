@@ -27,6 +27,6 @@ namespace asp_mvc_database_assignment.Models
         public string Title { get; set; }
 
         //--One to Many--Teacher to Course and Students-----------------
-        public List<Student_Course_Map> Student_Course_Maps { get; set; }
+        public List<Course> Courses { get; set; }
     }
 }

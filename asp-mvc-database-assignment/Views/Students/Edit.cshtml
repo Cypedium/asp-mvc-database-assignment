@@ -22,9 +22,12 @@
         <label asp-for="L_Name"></label>
         <input asp-for="L_Name" />
         <span asp-validation-for="L_Name"></span>
-        <input asp-for="E_mail" value="@Model.E_mail" type="hidden"/>
+        <input asp-for="E_mail" value="@Model.E_mail" type="hidden" />
         <br />
-       
+        <hr />
+        
         <input type="submit" value="Rename Student" />
+        <br />
+        <input type="submit" value="Back to Create Student" asp-action="Details" />
     </font>
 </form>

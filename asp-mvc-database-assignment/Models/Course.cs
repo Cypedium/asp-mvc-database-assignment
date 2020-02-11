@@ -22,8 +22,7 @@ namespace asp_mvc_database_assignment.Models
         public List<Student_Course_Map> Student_Course_Maps { get; set; } //many to many student to course
         
         public List<Grade> Grades { get; set; } //many to many joinclass Grade between Course and Assignment
-        
+       
         public Teacher Teacher { get; set; } //one to many teacher to courses
-        public int TeacherId { get; set; }
     }
 }

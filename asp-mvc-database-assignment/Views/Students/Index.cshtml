@@ -7,7 +7,7 @@
 <hr />
 <br />
 
-<h3 asp-action="Create">Create Student</h3>
+<a asp-action="Create" type="button" class="btn btn-success">Create Student</a>
 
 
 
@@ -24,8 +24,9 @@
         <td>@item.L_Name</td>
         <td>@item.E_mail</td>
         <td>@item.Grades</td>
-        <td><button asp-route-id="@item.Id" asp-action="Remove" type="button" class="btn btn-danger">Remove</button></td>
-        <td><button asp-route-id="@item.Id" asp-action="Edit" type="button" class="btn btn-warning">Rename</button></td>
+        <td><a asp-route-id="@item.Id" asp-action="Details" type="button" class="btn btn-info">Details</a></td>
+        <td><a asp-route-id="@item.Id" asp-action="Remove" type="button" class="btn btn-danger">Remove</a></td>
+        <td><a asp-route-id="@item.Id" asp-action="Edit" type="button" class="btn btn-warning">Rename</a></td>
     </tr>
     }
 

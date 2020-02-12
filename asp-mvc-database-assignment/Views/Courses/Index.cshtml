@@ -13,18 +13,27 @@
 @ViewBag.msg
 <br />
 <table class="table table-striped">
-
+    <tr>
+        <td>Title</td>
+        <td>Description</td>
+        <td>Teacher</td>
+        <td>Assignments</td>
+        <td>Student&Course</td>
+        <td>Action</td>
+    </tr>
     @foreach (var item in Model)
     {
         <tr id="@("CourseId" + item.Id)">
             <td>@item.Title</td>
             <td>@item.Description</td>
-            @*<td>@item.Teacher</td>*@
-            @*<td>@item.Grades</td>
-            <td>@item.Student_Course_Maps</td>*@
-            <td><a asp-route-id="@item.Id" asp-action="Details" type="button" class="btn btn-info">Details</a></td>
-            <td><a asp-route-id="@item.Id" asp-action="Remove" type="button" class="btn btn-danger">Remove</a></td>
-            <td><a asp-route-id="@item.Id" asp-action="Edit" type="button" class="btn btn-warning">Rename</a></td>
+            <td>@item.Teacher</td>
+            <td>@item.Assignments</td>
+            <td>@item.Student_Course_Maps</td>
+            <td>
+                <a asp-route-id="@item.Id" asp-action="Details" type="button" class="btn btn-info">Details</a>&nbsp;
+                <a asp-route-id="@item.Id" asp-action="Remove" type="button" class="btn btn-danger">Remove</a>&nbsp;
+                <a asp-route-id="@item.Id" asp-action="Edit" type="button" class="btn btn-warning">Rename</a>&nbsp;
+            </td>
         </tr>
     }
 

@@ -1,0 +1,34 @@
+﻿@model Teacher
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Rename Teacher</h1>
+<hr />
+<br />
+
+<form asp-action="Edit" method="post" class="btn btn-info">
+    <font style="align-content: stretch">
+
+        <div asp-validation-summary="All"></div>
+
+        <label asp-for="Title"></label>
+        <input asp-for="Title" /><span asp-validation-for="Title"></span>
+
+        <br />
+
+        <label asp-for="F_Name"></label>
+        <input asp-for="F_Name" /><span asp-validation-for="F_Name"></span>
+
+        <br />
+        <hr />
+        <label asp-for="L_Name"></label>
+        <input asp-for="L_Name" /><span asp-validation-for="L_Name"></span>
+
+        <br />
+        <hr />
+        <input type="submit" value="Rename Assignment" />
+        <br />
+        <input type="submit" value="Back to List" asp-action="Details" />
+    </font>
+</form>

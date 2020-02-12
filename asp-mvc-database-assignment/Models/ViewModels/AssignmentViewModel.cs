@@ -14,5 +14,6 @@ namespace asp_mvc_database_assignment.Models
         [Required]
         [StringLength(256, MinimumLength = 10)]
         public string Description { get; set; }
+        public Course Course { get; set; }
     }
 }

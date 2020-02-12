@@ -14,6 +14,7 @@ namespace asp_mvc_database_assignment.Models
         public int StudentId { get; set; }
         [Required]
         public int CourseId { get; set; }
+
         public Student Student { get; set; } //uses to access list in Student class
         public Course Course { get; set; } //uses to access list in Course class    
     }

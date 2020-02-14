@@ -1,13 +1,13 @@
-﻿using asp_mvc_database_assignment.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
+using asp_mvc_database_assignment.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace asp_mvc_database_assignment.Models
 {
-    public class HandleStudentsDbContext: DbContext 
+    public class HandleStudentsDbContext: IdentityDbContext 
     {
         public HandleStudentsDbContext(DbContextOptions<HandleStudentsDbContext> options) : base(options)
         { }
@@ -15,7 +15,6 @@ namespace asp_mvc_database_assignment.Models
         public DbSet<Course> Courses { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
-        //public DbSet<Grade> Grades { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,36 +30,7 @@ namespace asp_mvc_database_assignment.Models
             modelBuilder.Entity<Student_Course_Map>()
                 .HasOne(sc => sc.Course) //sc=studentcourse
                 .WithMany(c => c.Student_Course_Maps)
-                .HasForeignKey(sc => sc.CourseId);
-
-            ////***Init for Assignment Course Map as class Grade jointable**Many two many******
-            //modelBuilder.Entity<Grade>()
-            //    .HasKey(assignment_Course_Map => new { assignment_Course_Map.AssignmentId, assignment_Course_Map.CourseId });
-
-            //modelBuilder.Entity<Grade>()
-            //    .HasOne(ac => ac.Assignment)
-            //    .WithMany(a => a.Grades)
-            //    .HasForeignKey(ac => ac.AssignmentId);
-
-            //modelBuilder.Entity<Grade>()
-            //    .HasOne(ac => ac.Course)
-            //    .WithMany(c => c.Grades)
-            //    .HasForeignKey(ac => ac.CourseId);
-
-            ////***Init for Student and Grade one to many***************************************
-            //modelBuilder.Entity<Grade>()
-            //    .HasOne(s => s.Student)
-            //    .WithMany(g => g.Grades)
-            //    .HasForeignKey(g => g.StudentId);
-
-
-            ////***Init for Teacher and Courses one to many*************************************
-            //modelBuilder.Entity<Course>()
-            //    .HasOne(c => c.Teacher)
-            //    .WithMany(t => t.Courses)
-            //    .HasForeignKey(t => t.TeacherId);
-                
-            //********************************************************************************
+                .HasForeignKey(sc => sc.CourseId);            
         }
     }
 }

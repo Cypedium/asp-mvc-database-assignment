@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -15,13 +16,12 @@ namespace asp_mvc_database_assignment
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
         public Startup(IConfiguration configuration) //Accces database
         {
             Configuration = configuration;
         }
 
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -30,9 +30,23 @@ namespace asp_mvc_database_assignment
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            //sevices.AddDefaultIdentity<IdentityOptions>(OptionsBuilderConfigurationExtensions => Options.SignIn.RequireConfirmed)
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameWorkStores<HandleStudentsDbContext>();
 
-            //services.AddSingleton<ICarRepository, MockCarRepository>();// very alike a static
+            services.Configure<IdentityOptions>(options =>
+            {
+                // If your going to use the email for login to the site.
+                options.User.RequireUniqueEmail = true;
+                // Default Password settings.
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            });
+            //More Identity settings ca be found at https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio
+
             services.AddScoped<IStudentRepo, StudentRepo>();
             services.AddScoped<IAssignmentRepo, AssignmentRepo>();
             services.AddScoped<ICourseRepo, CourseRepo>();
@@ -52,9 +66,11 @@ namespace asp_mvc_database_assignment
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
+                app.UseExceptionHandler("Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -63,10 +79,8 @@ namespace asp_mvc_database_assignment
 
             app.UseRouting();
 
-            //Behöver körkort
-            //för att köra bilen och kunna kolla om de har ett körkort
-
-            app.UseAuthorization();
+            app.UseAuthentication(); //Behöver körkort
+            app.UseAuthorization(); //för att köra bilen och kunna kolla om de har ett körkort
 
             app.UseEndpoints(endpoints =>
             {

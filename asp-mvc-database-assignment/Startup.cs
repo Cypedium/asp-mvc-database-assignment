@@ -31,7 +31,7 @@ namespace asp_mvc_database_assignment
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameWorkStores<HandleStudentsDbContext>();
+                .AddEntityFrameworkStores<HandleStudentsDbContext>();
 
             services.Configure<IdentityOptions>(options =>
             {

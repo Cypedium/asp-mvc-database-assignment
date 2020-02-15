@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using asp_mvc_database_assignment.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace asp_mvc_database_assignment.Controllers
 {
+    [Authorize]
     public class StudentsController : Controller
     {
         //---Init and Index-----------------------------------------------------------

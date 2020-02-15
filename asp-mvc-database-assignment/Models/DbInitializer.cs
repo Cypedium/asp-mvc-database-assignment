@@ -84,7 +84,85 @@ namespace asp_mvc_database_assignment.Models
             {
                 context.Students.Add(student);
             }
-            context.SaveChanges();           
+            context.SaveChanges();
+
+            //-------Courses seeed-----------------------------------//
+
+            var courseSeed = new Course[]
+            {
+                new Course(){
+                    Title = "Identity",
+                    Description = "Asp-Mvc-Identity with Content Management System"
+                },
+                new Course(){
+                    Title = "Database",
+                    Description = "Asp-Mvc-Database with EntityFramework"
+                },
+                new Course(){
+                    Title = "Models",
+                    Description = "Asp-Mvc-Models with ViewModels"
+                },
+            };
+
+            foreach (Course course in courseSeed)
+            {
+                context.Courses.Add(course);
+            }
+            context.SaveChanges();
+
+            //-------Assignments seeed-----------------------------------//
+
+            var assignmentSeed = new Assignment[]
+            {
+                new Assignment(){
+                    Title = "Identity-Lecture",
+                    Description = "Lecture Asp.net Mvc Identity with Content Management System"
+                },
+                new Assignment(){
+                    Title = "Database-Assignment",
+                    Description = "Assignment Asp.net Mvc-Database with EntityFramework"
+                },
+                new Assignment(){
+                    Title = "Models-Workshop",
+                    Description = "Workshop Asp.net Mvc-Models with ViewModels"
+                },
+            };
+
+            foreach (Assignment assignment in assignmentSeed)
+            {
+                context.Assignments.Add(assignment);
+            }
+            context.SaveChanges();
+
+            //-------Teachers seeed-----------------------------------//
+
+            var teacherSeed = new Teacher[]
+            {
+                new Teacher(){
+                    Title = "Senior Teacher",
+                    F_Name = "Ulf",
+                    L_Name = "Bengtsson",
+                    E_mail = "ulf@gmail.com"                    
+                },
+                new Teacher(){
+                    Title = "Youtube Teacher",
+                    F_Name = "Mosh",
+                    L_Name = "Magandi",
+                    E_mail = "mosh@gmail.com"
+                },
+                new Teacher(){
+                    Title ="Teacher assistent",
+                    F_Name = "Mikael",
+                    L_Name = "Aurell",
+                    E_mail = "aurell.mikael@gmail.com"
+                },
+            };
+
+            foreach (Teacher teacher in teacherSeed)
+            {
+                context.Teachers.Add(teacher);
+            }
+            context.SaveChanges();
         }
     }
 }

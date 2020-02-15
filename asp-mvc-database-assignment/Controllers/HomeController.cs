@@ -12,5 +12,10 @@ namespace asp_mvc_database_assignment.Controllers
         {
             return View();
         }
+
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
 }

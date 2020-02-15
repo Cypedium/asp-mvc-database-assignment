@@ -18,6 +18,7 @@ namespace asp_mvc_database_assignment.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder); //trying to solve "The entity type 'IdentityUserLogin<string>' requires a primary key to be defined." when migrate
             //***Init for Student Course Map jointable****************************************
             modelBuilder.Entity<Student_Course_Map>()
                 .HasKey(student_Course_Map => new { student_Course_Map.StudentId, student_Course_Map.CourseId }); //t is only a variable

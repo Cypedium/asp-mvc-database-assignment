@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using asp_mvc_database_assignment.Models;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace asp_mvc_database_assignment.Controllers
 {
+    [Authorize]
     public class AssignmentsController : Controller
     {
         //---Init and Index-----------------------------------------------------------

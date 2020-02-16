@@ -18,7 +18,12 @@ namespace asp_mvc_database_assignment.Models
             context.Database.EnsureCreated();
             
             //Look for any Databasedata
-            if (context.Roles.Any())
+            if (context.Roles.Any()         &&
+                context.Students.Any()      &&
+                context.Courses.Any()       &&
+                context.Assignments.Any()   &&
+                context.Teachers.Any()
+                )
             {
                 return; //DB has been seeded
             }
@@ -77,7 +82,7 @@ namespace asp_mvc_database_assignment.Models
                     F_Name = "Tindra",
                     L_Name = "Snövit",
                     E_mail = "tindra.snövit@gmail.com"
-                },
+                }
             };
 
             foreach (Student student in studentSeed)
@@ -101,7 +106,7 @@ namespace asp_mvc_database_assignment.Models
                 new Course(){
                     Title = "Models",
                     Description = "Asp-Mvc-Models with ViewModels"
-                },
+                }
             };
 
             foreach (Course course in courseSeed)
@@ -115,17 +120,17 @@ namespace asp_mvc_database_assignment.Models
             var assignmentSeed = new Assignment[]
             {
                 new Assignment(){
-                    Title = "Identity-Lecture",
+                    Title = "Lecture",
                     Description = "Lecture Asp.net Mvc Identity with Content Management System"
                 },
                 new Assignment(){
-                    Title = "Database-Assignment",
+                    Title = "Assignment",
                     Description = "Assignment Asp.net Mvc-Database with EntityFramework"
                 },
                 new Assignment(){
-                    Title = "Models-Workshop",
+                    Title = "Workshop",
                     Description = "Workshop Asp.net Mvc-Models with ViewModels"
-                },
+                }
             };
 
             foreach (Assignment assignment in assignmentSeed)
@@ -155,7 +160,7 @@ namespace asp_mvc_database_assignment.Models
                     F_Name = "Mikael",
                     L_Name = "Aurell",
                     E_mail = "aurell.mikael@gmail.com"
-                },
+                }
             };
 
             foreach (Teacher teacher in teacherSeed)

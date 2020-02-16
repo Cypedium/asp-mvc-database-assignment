@@ -10,8 +10,8 @@ using asp_mvc_database_assignment.Models;
 namespace asp_mvc_database_assignment.Migrations
 {
     [DbContext(typeof(HandleStudentsDbContext))]
-    [Migration("20200215153440_Identity_ver3")]
-    partial class Identity_ver3
+    [Migration("20200215193948_Working_fine")]
+    partial class Working_fine
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

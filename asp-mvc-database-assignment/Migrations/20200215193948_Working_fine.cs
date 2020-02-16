@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace asp_mvc_database_assignment.Migrations
 {
-    public partial class Identity_ver3 : Migration
+    public partial class Working_fine : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

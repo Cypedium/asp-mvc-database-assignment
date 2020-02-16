@@ -36,6 +36,7 @@ namespace asp_mvc_database_assignment.Controllers
         }
 
         // GET: Roles/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
